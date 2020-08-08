@@ -15,6 +15,14 @@ fun Routing.search(client: io.ktor.client.HttpClient) {
             val get = client.get<String>("https://en.wikipedia.org/wiki/Main_Page")
             call.respond(get)
         }
+
+        get("test") {
+            call.respond("Test")
+        }
+
+        get("a") {
+            call.respond("ak")
+        }
     }
 
 }
