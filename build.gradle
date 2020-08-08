@@ -5,15 +5,23 @@ buildscript {
 
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.github.jengelman.gradle.plugins:shadow:5.2.0"
     }
 }
 
+apply plugin: "com.github.johnrengelman.shadow"
 apply plugin: 'kotlin'
 apply plugin: 'application'
 
 group 'com.drugapp'
 version '0.0.1'
 mainClassName = "io.ktor.server.netty.EngineMain"
+
+shadowJar {
+    archivesBaseName = "drug-application"
+    classifier = null
+    version = null
+}
 
 sourceSets {
     main.kotlin.srcDirs = main.java.srcDirs = ['src']
@@ -26,6 +34,8 @@ repositories {
     mavenLocal()
     jcenter()
     maven { url 'https://kotlin.bintray.com/ktor' }
+    maven { url "https://plugins.gradle.org/m2/" }
+
 }
 
 dependencies {
